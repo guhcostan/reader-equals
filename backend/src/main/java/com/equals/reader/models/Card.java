@@ -1,7 +1,6 @@
 package com.equals.reader.models;
 
 import com.equals.reader.enums.TipoCard;
-import java.nio.file.Path;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

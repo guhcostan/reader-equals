@@ -37,8 +37,9 @@ public class FileService {
 
 		File arquivoSalvo = new File(filepath.toUri());
 
-		if(!arquivoSalvo.exists()){
-			throw new FileNotFoundException("Ocorreu um erro ao salvar arquivo " + arquivoSalvo.getName());
+		if (!arquivoSalvo.exists()) {
+			throw new FileNotFoundException(
+				"Ocorreu um erro ao salvar arquivo " + arquivoSalvo.getName());
 		}
 
 		cardService.salvarCaminhoArquivo(card, arquivoSalvo.getAbsolutePath());

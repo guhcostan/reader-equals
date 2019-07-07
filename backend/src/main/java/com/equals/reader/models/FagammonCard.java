@@ -9,13 +9,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "fagammon_card")
-public class FagammonCard extends Card{
+public class FagammonCard extends Card {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	public FagammonCard(TipoCard tipoRegistro, byte[] dataProcessamento, byte[] estabelecimento,  String empresaAdiquirente,
+	public FagammonCard(TipoCard tipoRegistro, byte[] dataProcessamento, byte[] estabelecimento,
+		String empresaAdiquirente,
 		byte[] sequencia) {
 		super(tipoRegistro, estabelecimento, dataProcessamento, sequencia, empresaAdiquirente);
 	}
