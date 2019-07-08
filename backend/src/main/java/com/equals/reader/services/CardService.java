@@ -2,11 +2,14 @@ package com.equals.reader.services;
 
 import com.equals.reader.enums.TipoCard;
 import com.equals.reader.models.Card;
+import com.equals.reader.models.CardCount;
 import com.equals.reader.models.FagammonCard;
 import com.equals.reader.models.UflaCard;
 import com.equals.reader.repositories.CardRepository;
 import java.io.IOException;
-import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,5 +69,19 @@ public class CardService {
 
 		card.setPathArquivo(caminhoArquivo);
 		cardRepository.save(card);
+	}
+
+	public List<CardCount> contabilizar() {
+		List<CardCount> cardCounts = new ArrayList<>();
+		ArrayList<TipoCard> listaTiposCard = new ArrayList<>(Arrays.asList(TipoCard.values()));
+
+		listaTiposCard.forEach(
+			tipoCard -> {
+				CardCount cardCount = new CardCount(tipoCard.getNome(),  cardRepository.countCardByTipoRegistro(tipoCard));
+				cardCounts.add(cardCount);
+			}
+		);
+
+		return cardCounts;
 	}
 }

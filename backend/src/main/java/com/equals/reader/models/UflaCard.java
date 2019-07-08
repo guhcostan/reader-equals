@@ -9,13 +9,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ufla_card")
-public class UflaCard extends Card{
+public class UflaCard extends Card {
 
+	byte[] periodoInicial;
+	byte[] periodoFinal;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	byte[] periodoInicial;
-	byte[] periodoFinal;
 
 	public UflaCard(TipoCard tipoRegistro, byte[] estabelecimento, byte[] dataProcessamento,
 		byte[] periodoInicial, byte[] periodoFinal, byte[] sequencia, String empresaAdiquirente) {
