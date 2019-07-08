@@ -1,0 +1,32 @@
+@import "~cria-ui-react/themes/src/common/var";
+
+
+// Cores
+
+$-color-primary: #1F3D59;
+$-color-primary-light: $--color-primary-light-5;
+$-color-primary-lighter: $--color-primary-light-9;
+
+$-color-secondary: #4EB0B4;
+
+$-color-soja: #97DD9A;
+$-color-milho: #FFD596;
+$-color-algodao: #90CAF9;
+
+$-color-success: $--color-success;
+$-color-warning: $--color-warning;
+$-color-danger: $--color-danger;
+$-color-info: $--color-info;
+
+$-color-background: $--background-color-base;
+
+$-color-text-primary: $--color-text-primary;
+$-color-text-regular: $--color-text-regular;
+$-color-text-secondary: $--color-text-secondary;
+$-color-text-placeholder: $--color-text-placeholder;
+
+$-color-border: $--border-color-base;
+
+// Tamanhos
+
+$-max-width-view: 1170px

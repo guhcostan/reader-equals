@@ -1,0 +1,20 @@
+$--font-path: '~cria-ui-react/themes/src/fonts';
+
+$--color-primary: #4EB0B4;
+$--color-info: #409EFF;
+
+@import "~cria-ui-react/themes/src/index.scss";
+
+@media only screen and (max-width: 660px) {
+	.cd-step-bar > li > p {
+		display: none
+	}
+	.cd-step-bar {
+		min-height: auto;
+	}
+}
+
+.cd-footer {
+	color: #333333;
+	font-size: 13px;
+}

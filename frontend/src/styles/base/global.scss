@@ -1,0 +1,36 @@
+@import "../base/variables";
+
+$mdi-font-path: "~@mdi/font/fonts";
+
+@import "~@mdi/font/scss/materialdesignicons";
+
+body {
+	margin: 0;
+	font-family: "Roboto", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 500;
+}
+
+.section {
+	margin-bottom: 20px;
+}
+
+.label__tip {
+	color: $-color-text-secondary;
+}
+
+.cd-menu-item > i + span {
+	margin-left: 5px;
+}
+
+.cd-menu-item > i {
+	margin-right: 0 !important;
+}

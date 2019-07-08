@@ -1,0 +1,89 @@
+@import "../../../styles/base/variables"
+
+#view
+	background-color: $-color-background
+	height: 100vh
+
+	.cd-container
+		height: 100%
+
+	.cd-aside
+		background-color: $--color-white
+		z-index: 1000
+		box-shadow: $--box-shadow-base
+
+		.cd-menu.cd-menu--collapse
+			width: fit-content
+			transition: width linear .3s
+
+		.cd-menu
+			width: 300px
+			transition: width linear .3s
+
+		.cd-menu-title
+			height: 75px
+			display: flex
+			align-items: center
+
+	.cd-header
+		background-color: $-color-secondary
+		color: $--color-white
+		display: flex
+		justify-content: center
+		align-items: center
+
+		.cd-header--content
+			margin: 0 40px
+			width: 100%
+			display: flex
+			justify-content: space-between
+			align-items: center
+
+			#user
+				cursor: pointer
+				display: flex
+				justify-content: center
+				align-items: center
+				width: 100px
+
+				.cd-button--text
+					color: $-color-primary
+
+	.subheader
+		background-color: $--color-white
+		height: 75px
+		display: flex
+		justify-content: center
+
+		.subheader--content
+			display: flex
+			flex-direction: column
+			max-width: $-max-width-view
+			width: 100%
+			margin: 15px 40px
+			justify-content: flex-start
+			align-items: flex-start
+
+			h2
+				margin: 5px 0 0 0
+
+	.cd-footer
+		text-align: center
+		margin-top: 40px
+		display: flex
+		align-items: center
+		justify-content: center
+
+	.cd-main
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+		align-items: center
+		z-index: 0
+
+		.cd-main--content
+			display: contents
+			max-width: $-max-width-view
+			min-height: 80%
+			width: 100%
+			margin: 0 40px
