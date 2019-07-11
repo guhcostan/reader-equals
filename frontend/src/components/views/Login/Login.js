@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Card, Input, Layout } from 'cria-ui-react';
-import { Notification } from 'element-react';
 import { withRouter } from 'react-router-dom';
 import logo from '../../../assets/logo_equals.png'
 import './Login.sass';
 import UsuarioService from '../../../services/UsuarioService';
+import notification from '../../../helpers/notification';
 
 class Login extends Component {
 
@@ -25,7 +25,7 @@ class Login extends Component {
         )
     }
 
-    irParaCadastrar(){
+    irParaCadastrar() {
         this.props.history.push('/cadastrar');
     }
 
@@ -41,14 +41,8 @@ class Login extends Component {
         const { login, senha } = this.state;
         UsuarioService.login(login, senha).then(() => {
             this.props.history.push('/dashboard');
-        }).catch(() => {
-            Notification(
-                {
-                    title: 'Usuario ou senha incorretos.',
-                    message: 'Confira se digitou corretamente os campos.',
-                    type: 'error'
-                }
-            );
+        }).catch((response) => {
+            notification.emitirMensagemAlerta('Confira se digitou corretamente os campos.')
         })
     }
 
@@ -62,13 +56,23 @@ class Login extends Component {
                             <Layout.Col>
                                 <Input
                                     onChange={this.atualizaLogin.bind(this)}
-                                    placeholder="login">
+                                    onKeyDown={event => {
+                                        if (event.key === 'Enter') {
+                                            this.login()
+                                        }
+                                    }}
+                                    placeholder="Email ou login">
                                 </Input>
                             </Layout.Col>
                         </Layout.Row>
                         <Layout.Row>
                             <Layout.Col>
-                                <Input placeholder="senha"
+                                <Input placeholder="Senha"
+                                       onKeyDown={event => {
+                                           if (event.key === 'Enter') {
+                                               this.login()
+                                           }
+                                       }}
                                        onChange={this.atualizaSenha.bind(this)}
                                        suffixIcon="mdi mdi-lock" type="password">
                                 </Input>

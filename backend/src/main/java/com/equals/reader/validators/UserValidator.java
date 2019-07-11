@@ -23,21 +23,27 @@ public class UserValidator implements Validator {
 	public void validate(Object o, Errors errors) {
 		User user = (User) o;
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty",
+			"Campos usuario não deve ser vazio.");
 		if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
-			errors.rejectValue("username", "Size.userForm.username");
+			errors.rejectValue("username", "Size.userForm.username",
+				"O campo de usuario deve conter de 6 a 32 digitos.");
 		}
 		if (userService.findByUsername(user.getUsername()) != null) {
-			errors.rejectValue("username", "Duplicate.userForm.username");
+			errors.rejectValue("username", "Duplicate.userForm.username",
+				"Nome de usuário não disponivel.");
 		}
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty",
+			"Campos senha não deve ser vazio.");
 		if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
-			errors.rejectValue("password", "Size.userForm.password");
+			errors.rejectValue("password", "Size.userForm.password",
+				"O campo de usuario deve conter de 8 a 32 digitos.");
 		}
 
 		if (!user.getPasswordConfirm().equals(user.getPassword())) {
-			errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
+			errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm",
+				"Confirmação de senha invalida.");
 		}
 	}
 }

@@ -2,6 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@mdi/font": "^3.7.95",
     "apexcharts": "^3.8.1",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "cria-ui-react": "^1.0.0",
     "element-react": "^1.4.34",
+    "js-file-download": "^0.4.7",
     "node-sass": "^4.12.0",
     "react-hot-loader": "^4.12.3",
     "react-redux": "^7.1.0",

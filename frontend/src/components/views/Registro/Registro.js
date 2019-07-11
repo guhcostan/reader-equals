@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Card, Input, Layout } from 'cria-ui-react';
-import { Notification } from 'element-react';
 import { withRouter } from 'react-router-dom';
 import logo from '../../../assets/logo_equals.png'
 import './Registro.sass';
 import UsuarioService from '../../../services/UsuarioService';
+import notification from '../../../helpers/notification';
 
 class Registro extends Component {
 
@@ -48,17 +48,13 @@ class Registro extends Component {
 
     cadastrar() {
         const { login, senha, confirmacaoSenha } = this.state;
-        UsuarioService.cadastrar(login, senha, confirmacaoSenha).then(() => {
-            this.props.history.push('/dashboard');
-        }).catch(() => {
-            Notification(
-                {
-                    title: 'Usuario ou senha incorretos.',
-                    message: 'Confira se digitou corretamente os campos.',
-                    type: 'error'
-                }
-            );
-        })
+        if (senha === confirmacaoSenha) {
+            UsuarioService.cadastrar(login, senha, confirmacaoSenha).then(() => {
+                this.props.history.push('/dashboard');
+            }).catch(({ response }) => {
+                notification.emitirMensagemAlerta('Confira se digitou corretamente os campos.')
+            })
+        }
     }
 
     render() {
@@ -72,6 +68,11 @@ class Registro extends Component {
                                 <Input
                                     onChange={this.atualizaLogin.bind(this)}
                                     placeholder="Digite seu login">
+                                    onKeyDown={event => {
+                                    if (event.key === 'Enter') {
+                                        this.cadastrar()
+                                    }
+                                }}
                                 </Input>
                             </Layout.Col>
                         </Layout.Row>
@@ -79,6 +80,11 @@ class Registro extends Component {
                             <Layout.Col>
                                 <Input placeholder="Digite sua senha"
                                        onChange={this.atualizaSenha.bind(this)}
+                                       onKeyDown={event => {
+                                           if (event.key === 'Enter') {
+                                               this.cadastrar()
+                                           }
+                                       }}
                                        suffixIcon="mdi mdi-lock" type="password">
                                 </Input>
                             </Layout.Col>
@@ -87,6 +93,11 @@ class Registro extends Component {
                             <Layout.Col>
                                 <Input placeholder="Digite sua senha novamente"
                                        onChange={this.atualizaConfirmacao.bind(this)}
+                                       onKeyDown={event => {
+                                           if (event.key === 'Enter') {
+                                               this.cadastrar()
+                                           }
+                                       }}
                                        suffixIcon="mdi mdi-lock" type="password">
                                 </Input>
                             </Layout.Col>

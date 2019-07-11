@@ -1,23 +1,22 @@
 package com.equals.reader.models;
 
 import com.equals.reader.enums.TipoCard;
+import java.time.LocalDate;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 @Entity
+@AllArgsConstructor
+@Data
 @Table(name = "fagammon_card")
 public class FagammonCard extends Card {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
-	public FagammonCard(TipoCard tipoRegistro, byte[] dataProcessamento, byte[] estabelecimento,
+	public FagammonCard(TipoCard tipoRegistro, LocalDate dataProcessamento, String estabelecimento,
 		String empresaAdiquirente,
-		byte[] sequencia) {
+		String sequencia) {
 		super(tipoRegistro, estabelecimento, dataProcessamento, sequencia, empresaAdiquirente);
 	}
+
 }

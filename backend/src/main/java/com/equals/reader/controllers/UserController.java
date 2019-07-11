@@ -5,12 +5,12 @@ import com.equals.reader.services.SecurityService;
 import com.equals.reader.services.UserService;
 import com.equals.reader.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -27,16 +27,21 @@ public class UserController {
 	private UserValidator userValidator;
 
 	@PostMapping("/auth/register")
-	public ResponseEntity<String> register(@RequestBody User userForm,
+	public ResponseEntity register(@RequestBody User userForm,
 		BindingResult bindingResult) {
 
 		userValidator.validate(userForm, bindingResult);
+
+		if (bindingResult.hasErrors()) {
+			return new ResponseEntity<>(bindingResult.getAllErrors().stream().map(
+				DefaultMessageSourceResolvable::getDefaultMessage), HttpStatus.NOT_ACCEPTABLE);
+		}
 
 		userService.save(userForm);
 
 		securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-		return new ResponseEntity<String>("Registro realizado com sucesso.", HttpStatus.OK);
+		return new ResponseEntity<>("Registro realizado com sucesso.", HttpStatus.OK);
 	}
 
 

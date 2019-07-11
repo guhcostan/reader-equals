@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Card, Input, Layout } from 'cria-ui-react';
-import { withRouter } from "react-router-dom";
-import { Upload, Notification } from 'element-react';
-import logo from '../../../assets/logo_equals.png'
+import { Layout } from 'cria-ui-react';
+import { withRouter } from 'react-router-dom';
+import { Upload } from 'element-react';
 import './UploadArquivo.sass';
 import View from '../../layouts/View';
+import notification from '../../../helpers/notification';
 
 class UploadArquivo extends Component {
 
@@ -17,37 +17,27 @@ class UploadArquivo extends Component {
         {
             icon: 'cd-icon-menu mdi mdi-view-dashboard', title: 'Dashboard', active: false,
             onClick: () => {
-                this.props.history.push("/dashboard");
+                this.props.history.push('/dashboard');
             }
         },
         {
             icon: 'cd-icon-menu mdi mdi-upload', title: 'Upload Arquivos', active: true,
             onClick: () => {
-                this.props.history.push("/dashboard/upload");
+                this.props.history.push('/dashboard/upload');
+            }
+        },
+        {
+            icon: 'cd-icon-menu mdi mdi-page-previous', title: 'Cadastro card', active: false,
+            onClick: () => {
+                this.props.history.push('/dashboard/cadastro');
             }
         }
     ];
 
-    emitirMensagemSucesso() {
-        Notification({
-                         title: 'Success',
-                         message: 'Mensagem de sucesso',
-                         type: 'success',
-                         duration: 0
-                     });
-    }
-
-    emitirMensagemErro() {
-        Notification({
-                         title: 'Warning',
-                         message: 'Mensagem de advertência',
-                         type: 'warning'
-                     });
-    }
 
     render() {
         return (
-          <View menu={this.menu} history={this.props.history} title="Dados Gerais" breadcrumb={this.breadcrumb}>
+          <View menu={this.menu} history={this.props.history} title="Upload Arquivo" breadcrumb={this.breadcrumb}>
             <Layout.Row className="full-height" justify="center" align="middle" type="flex">
                 <Layout.Col span={20}>
                     <Upload
@@ -55,9 +45,9 @@ class UploadArquivo extends Component {
                         drag
                         multiple
                         showFileList
-                        onSuccess={this.emitirMensagemSucesso.bind()}
-                        onError={this.emitirMensagemErro.bind()}
-                        action="/api/enviarCard"
+                        onSuccess={notification.emitirMensagemSucesso.bind()}
+                        onError={notification.emitirMensagemErro.bind()}
+                        action="/enviarCard"
                     >
                         <i className="el-icon-upload"/>
                         <div className="el-upload__text">Arraste o arquivo ou<em> click para upload</em></div>
